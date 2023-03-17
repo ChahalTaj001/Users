@@ -1,0 +1,99 @@
+<div class="navbar navbar-light">
+    <div class="d-flex">
+        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success">Add User</button>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+          <th scope="col">Position</th>
+        <th scope="col" (click)="onSort()"> First Name </th>
+        <th scope="col">Middle Name</th>
+        <th scope="col"> Last Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">DOB</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    
+    <tbody>
+        <tr *ngFor="let user of listData; let index = index;">
+          
+        <td><i class="fa fa-arrow-up" aria-hidden="true" (click)="moveUp(user, index)"></i>
+          <i class="fa fa-arrow-down" aria-hidden="true" (click)="moveDown(user, index)"></i></td>
+        
+        <td>{{user.firstName}}</td>
+        <td>{{user.middleName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.dob}}</td>
+         <td>
+            <button class="btn btn-danger" (click)="onRemove(user)">Delete</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Enters Users Info</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="userForm">
+                <div class="mb-1">
+                  <label for="exampleInputEmail1" class="form-label">First Name</label>
+                  <input formControlName="firstName" type="text" class="form-control">
+                </div>
+                <div *ngIf="userForm.controls['firstName'].dirty && userForm.hasError('required','firstName')" class="text-danger mb-2">*First Name is required</div>
+                <div class="mb-1">
+                    <label for="exampleInputEmail1" class="form-label">Middle Name</label>
+                    <input formControlName="middleName" type="Text" class="form-control">
+                  </div>
+                  <div *ngIf="userForm.controls['middleName'].dirty && userForm.hasError('required','middleName')" class="text-danger mb-2">*Middle Name is required</div>
+                  <div class="mb-1">
+                    <label for="exampleInputEmail1" class="form-label">Last Name</label>
+                    <input formControlName="lastName" type="text" class="form-control">
+                  </div>
+                  <div *ngIf="userForm.controls['lastName'].dirty && userForm.hasError('required','lastName')" class="text-danger mb-2">*Last Name is required</div>
+                <div class="mb-1">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input formControlName="email" type="email" class="form-control">
+                  </div>
+                  <div *ngIf="userForm.controls['email'].dirty && userForm.hasError('required','email')" class="text-danger mb-2">*Email is required</div>
+                 
+                  <div class="form-group">
+                    <label for="dateOfBirth">Date of Birth</label>
+                    <input formControlName="dob" id="dob" name="dateOfBirth" 
+                    type="date" class="form-control">
+                  </div>
+
+                  <div class="mb-1">
+                    <label for="exampleInputEmail1" class="form-label">Password</label>
+                    <input formControlName="password" type="text" class="form-control" name="password">
+                  </div>
+                  <div *ngIf="userForm.controls['password'].dirty && userForm.hasError('required','password')" class="text-danger mb-2">*Password should have no Space</div>
+
+                  
+                  <div class="dropdown">
+                    <button type="button" class="btn btn-default dropdown-toggle"
+                    id="dropdownMenu" data-bs-toggle="dropdown">Status</button>
+                    <ul class="dropdown-menu">
+                      <li>Active</li>
+                      <li><a href="#">Inactive</a></li>
+                      <li><a href="#">Prospective</a></li>
+                    </ul>
+                  </div>
+    
+                 </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button"  class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="addUser()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
