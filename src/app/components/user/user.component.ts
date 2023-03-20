@@ -22,7 +22,8 @@ export class UserComponent implements OnInit {
       {firstName:'Mark', middleName:'Whone', lastName:'Anderson', email:'aderson@gmail.com', dob:'05-02-1985'},
       {firstName:'Dominic', middleName:'Marsh', lastName:'Torreto', email:'dominic@gmail.com', dob:'15-06-984'},
       {firstName:'Danniel', middleName:'Penny', lastName:'Brown', email:'dennial@gmail.com', dob:'05-08-1988'},
-      {firstName:'Donald', middleName:'Harold', lastName:'Cooper', email:'cooper@gmail.com', dob:'20-11-1980'}
+      {firstName:'Donald', middleName:'Harold', lastName:'Cooper', email:'cooper@gmail.com', dob:'20-11-1980'},
+      {firstName:'Samantha', middleName:'Dred', lastName:'Wheeler', email:'samantha@gmail.com', dob:'13-03-1994'}
     ]
 
     this.userForm = this.formbuilder.group ({
